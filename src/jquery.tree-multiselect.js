@@ -390,6 +390,14 @@
       /* wo work with %Request.GetParameter("...") , originalSelect only returns first element for no reason ! */
       if ($("#hiddenInputId").length) {
         $("#hiddenInputId").val(selected);
+        
+        var oHeight = parseInt($(".tree-multiselect .selected").css("height") + "", 10);
+        var bHeight = parseInt(window.parent.document.getElementById("pt_modals").childNodes[1].offsetHeight + "", 10);
+        if (bHeight && oHeight != bHeight) {
+          $(".tree-multiselect .selected").css("height", bHeight - 100);
+          $(".tree-multiselect .selected").css("overflowY", "auto");
+        }
+        
       }
       
       $(originalSelect).html($(originalSelect).find("option").sort(function(a, b) {
