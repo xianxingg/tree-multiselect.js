@@ -386,7 +386,12 @@
       });
 
       jqOriginalSelect.val(selected);
-
+      
+      /* wo work with %Request.GetParameter("...") , originalSelect only returns first element for no reason ! */
+      if ($("#hiddenInputId").length) {
+        $("#hiddenInputId").val(selected);
+      }
+      
       $(originalSelect).html($(originalSelect).find("option").sort(function(a, b) {
         var aValue = selected.indexOf($(a).attr('value'));
         var bValue = selected.indexOf($(b).attr('value'));
@@ -395,6 +400,7 @@
         if (aValue < bValue) return -1;
         return 0;
       }));
+      
     }
 
     function update() {
